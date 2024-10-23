@@ -3,7 +3,8 @@
 class SceneDev1 : public Scene
 {
 protected:
-	
+	std::vector<std::string> casinoSource;
+
 public:
 	SceneDev1();
 	~SceneDev1() = default;
@@ -14,5 +15,9 @@ public:
 
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
+
+	void SettingObject();
+	void LoadResource();
+	void UnloadResource();
 };
 
