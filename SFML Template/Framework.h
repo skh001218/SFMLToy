@@ -1,4 +1,5 @@
 #pragma once
+
 class Framework : public Singleton<Framework>
 {
 	friend Singleton<Framework>;
@@ -35,4 +36,4 @@ public:
 	virtual void Release();
 };
 
-#define FRAMEWROK (Framework::Instance())
+#define FRAMEWORK (Framework::Instance())

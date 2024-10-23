@@ -1,16 +1,18 @@
 #pragma once
-#include "stdafx.h"
-class SpriteGo : public GameObject
+#include "GameObject.h"
+class ClickableGo : public GameObject
 {
 protected:
 	sf::Sprite sprite;
+	sf::Sprite spriteEdge;
 	std::string textureId;
+	ObjectType objectType = ObjectType::ClickableOJ;
 
 public:
-	SpriteGo() = default;
-	~SpriteGo() = default;
+	ClickableGo() = default;
+	~ClickableGo() = default;
 
-	SpriteGo(const std::string& textId, const std::string& name = "");
+	ClickableGo(const std::string& textId, const std::string& name = "");
 
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
@@ -18,5 +20,12 @@ public:
 	void Reset() override;
 	void SetPosition(const sf::Vector2f& pos) override;
 	void Draw(sf::RenderWindow& window) override;
+
+
+
+
+
+
+
 };
 

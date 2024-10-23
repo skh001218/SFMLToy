@@ -6,6 +6,7 @@ void Framework::Init(int width, int height, const const std::string& name)
 {
 	window.create(sf::VideoMode(width, height), name);
     SCENE_MGR.Init();
+    window.setMouseCursorVisible(false);
 }
 
 void Framework::Do()
@@ -29,6 +30,15 @@ void Framework::Do()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (event.type == sf::Event::KeyPressed)
+                switch (event.key.code)
+                {
+                case sf::Keyboard::Escape:
+                    window.close();
+                    break;
+                
+                }
+
 
             InputMgr::UpdateEvent(event);
         }

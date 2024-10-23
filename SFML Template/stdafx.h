@@ -5,9 +5,11 @@
 #include <unordered_map>
 #include <algorithm>
 #include <iostream>
+#include <string>
 
 //SFML header
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Cursor.hpp>
 
 //
 
@@ -19,3 +21,4 @@
 #include "ResourceMgr.h"
 #include "GameObject.h"
 #include "SceneMgr.h"
+#include "MouseMgr.h"

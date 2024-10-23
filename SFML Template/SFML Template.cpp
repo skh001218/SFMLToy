@@ -3,9 +3,9 @@
 
 int main()
 {
-    FRAMEWROK.Init(1920, 1080, "SFML Framework");
-    FRAMEWROK.Do();
-    FRAMEWROK.Release();
+    FRAMEWORK.Init(1920, 1080, "SFML Framework");
+    FRAMEWORK.Do();
+    FRAMEWORK.Release();
 
     return 0;
 }

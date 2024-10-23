@@ -8,6 +8,7 @@ protected:
 	sf::Vector2f position;
 	Origins originPreset;
 	sf::Vector2f origin;
+	ObjectType objectType = ObjectType::defaultOJ;
 
 public:
 	GameObject(const std::string& name = "");

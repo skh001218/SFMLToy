@@ -4,6 +4,7 @@
 Scene::Scene(SceneIds id)
     : id(id)
 {
+
 }
 
 void Scene::Init()
