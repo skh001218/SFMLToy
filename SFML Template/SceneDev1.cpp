@@ -70,11 +70,23 @@ void SceneDev1::SettingObject()
 	{
 		GameObject* objPlayer = AddGo(new Player(i));
 		objPlayer->SetPosition({ 0.f + i * 400.f, 1080.f });
-	}
 
-	GameObject* dice = AddGo(new Dice(""));
-	obj->SetOrigin(Origins::MC);
-	obj->SetPosition({ 1920 / 2, 1080 / 2 });
+		std::string na = "Player";
+		na += std::to_string(i + 1);
+		GameObject* dice = AddGo(new Dice(na));
+		dice->SetOrigin(Origins::MC);
+		dice->SetPosition({ objPlayer->GetPosition().x + 100,  objPlayer->GetPosition().y - 150 });
+		GameObject* diceCount = AddGo(new TextGo("X 8"));
+		diceCount->SetOrigin(Origins::ML);
+		diceCount->SetPosition({ dice->GetPosition().x + 30, dice->GetPosition().y });
+
+		players.push_back(objPlayer);
+	}
+	FindGo("Player1");
+	std::cout << FindGo("Player5")->GetName();
+
+	
+
 
 	GameObject* objText = AddGo(new TextGo("SceneDev1"));
 	objText->SetOrigin(Origins::TC);

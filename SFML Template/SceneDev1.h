@@ -1,9 +1,11 @@
 #pragma once
 #include "Scene.h"
+#include "Player.h"
+
 class SceneDev1 : public Scene
 {
 protected:
-	std::vector<std::string> casinoSource;
+	std::vector<GameObject*> players;
 
 public:
 	SceneDev1();

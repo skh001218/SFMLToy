@@ -29,7 +29,8 @@ void Player::SetOrigin(Origins preset)
 
 void Player::SetOrigin(const sf::Vector2f& newOrigin)
 {
-	
+	rectShape.setOrigin(newOrigin);
+	origin = rectShape.getOrigin();
 }
 
 void Player::Reset()
@@ -37,13 +38,14 @@ void Player::Reset()
 	score = 0;
 	
 	rectShape.setFillColor(pColors[colorNum]);
-	rectShape.setOrigin({ 0.f, 80.f });
+	SetOrigin({ 0.f, 80.f });
 	
 }
 
 void Player::SetPosition(const sf::Vector2f& pos)
 {
 	rectShape.setPosition(pos);
+	position = pos;
 }
 
 void Player::Init()

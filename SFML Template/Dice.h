@@ -9,11 +9,6 @@ protected:
 	sf::Color color;
 	int count;
 
-	sf::Text text;
-	std::string font;
-	std::string textInfo;
-	int textSize;
-
 public:
 	Dice() = default;
 	virtual ~Dice() = default;

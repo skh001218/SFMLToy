@@ -2,7 +2,7 @@
 #include "Dice.h"
 
 Dice::Dice(const std::string& name)
-	: GameObject(name), num(0), textureId("test/dice.png"), count(8), font("fonts/KOMIKAP_.ttf")
+	: GameObject(name), num(0), textureId("test/dice.png"), count(8)
 {
 }
 
@@ -34,17 +34,11 @@ void Dice::Init()
 
 void Dice::Reset()
 {
-	FONT_MGR.Load(font);
-	text.setFont(FONT_MGR.Get(font));
-	text.setString("X 8");
-	text.setPosition({ sprite.getPosition().x + 10, sprite.getPosition().y });
-	text.setFillColor(sf::Color::White);
-
 	TEXTURE_MGR.Load(textureId);
 	sprite.setTexture(TEXTURE_MGR.Get(textureId));
 	sprite.setTextureRect({ 1, 33, 22, 29 });
 	sf::Vector2f originScale = sprite.getScale();
-	sprite.setScale({ originScale.x * 10, originScale.y * 10 });
+	sprite.setScale({ originScale.x * 2, originScale.y * 2 });
 	SetOrigin(originPreset);
 	
 }
@@ -59,5 +53,4 @@ void Dice::Draw(sf::RenderWindow& window)
 {
 	GameObject::Draw(window);
 	window.draw(sprite);
-	window.draw(text);
 }
