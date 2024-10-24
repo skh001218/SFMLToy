@@ -22,3 +22,4 @@
 #include "GameObject.h"
 #include "SceneMgr.h"
 #include "MouseMgr.h"
+#include "Note.h"

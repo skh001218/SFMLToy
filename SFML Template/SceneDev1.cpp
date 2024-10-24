@@ -30,8 +30,6 @@ void SceneDev1::Init()
 	clickObj1->SetOrigin(Origins::p22);
 	clickObj1->SetPosition({ 1920 / 2, 1080 / 2 });
 
-	MouseMgr::Instance().Init();
-
 	Scene::Init();
 }
 
@@ -70,7 +68,7 @@ void SceneDev1::Update(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Dev2);
-	}
+	}	
 }
 
 void SceneDev1::Draw(sf::RenderWindow& window)

@@ -148,6 +148,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputMgr.cpp" />
     <ClCompile Include="MouseMgr.cpp" />
+    <ClCompile Include="Note.cpp" />
+    <ClCompile Include="NoteMgr.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
     <ClCompile Include="SceneDev2.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="MouseMgr.h" />
+    <ClInclude Include="Note.h" />
+    <ClInclude Include="NoteMgr.h" />
     <ClInclude Include="ResourceMgr.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDev1.h" />

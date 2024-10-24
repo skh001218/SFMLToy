@@ -21,11 +21,11 @@ enum class Origins
 	Custom,
 };
 
-enum class ObjectType
+enum class ClickableTypes
 {
-	defaultOJ,
-	ClickableOJ,
-	ClickedOJ,
+	disabled,
+	enabled,
+	clicked,
 };
 
 enum class TempPlayerNo

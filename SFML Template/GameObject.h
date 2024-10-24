@@ -8,7 +8,7 @@ protected:
 	sf::Vector2f position;
 	Origins originPreset;
 	sf::Vector2f origin;
-	ObjectType objectType = ObjectType::defaultOJ;
+	ClickableTypes objectType = ClickableTypes::disabled;
 
 public:
 	GameObject(const std::string& name = "");
@@ -38,5 +38,6 @@ public:
 
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow& window);
+	
 };
 

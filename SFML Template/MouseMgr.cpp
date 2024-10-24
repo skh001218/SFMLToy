@@ -19,3 +19,8 @@ void MouseMgr::Draw(sf::RenderWindow& window)
 {
 	window.draw(mouseSprite);
 }
+
+sf::Vector2i MouseMgr::getMousePosition()
+{
+	return mousePosition;
+}

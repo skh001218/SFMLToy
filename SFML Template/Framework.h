@@ -30,10 +30,12 @@ public:
 
 	void SetTimeScale(float newTimeScale) { timeScale = newTimeScale; };
 	float GetTimeScale() const { return timeScale; };
-
+	
 	virtual void Init(int width, int height, const const std::string& name);
 	virtual void Do();
 	virtual void Release();
+
+	sf::RenderWindow& GetWindow();
 };
 
 #define FRAMEWORK (Framework::Instance())

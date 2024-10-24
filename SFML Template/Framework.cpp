@@ -11,17 +11,17 @@ void Framework::Init(int width, int height, const const std::string& name)
 
 void Framework::Do()
 {
+    
 
     while (window.isOpen())
     {
-
         sf::Time dt = clock.restart();
         realDeltaTime = deltaTime = dt.asSeconds();
         deltaTime *= timeScale;
         realTime += realDeltaTime;
         time += deltaTime;
 
-
+        
         //이벤트 루프
         InputMgr::Clear();
 
@@ -56,4 +56,9 @@ void Framework::Do()
 
 void Framework::Release()
 {
+}
+
+sf::RenderWindow& Framework::GetWindow()
+{
+    return window;
 }

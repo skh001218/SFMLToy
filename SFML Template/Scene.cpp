@@ -88,8 +88,7 @@ int Scene::FindGoAll(const std::string& name, std::list<GameObject*>& list)
         if (obj->GetName() == name)
         {
             list.push_back(obj);
-        }
-            
+        }            
     }
     return list.size();
 }

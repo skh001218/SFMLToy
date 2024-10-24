@@ -9,7 +9,7 @@ private:
 	sf::Vector2i mousePosition;
 	sf::Sprite mouseSprite;
 	bool inWindow = true;
-	ObjectType objectType = ObjectType::defaultOJ;
+	ClickableTypes objectType = ClickableTypes::disabled;
 	
 	MouseMgr() = default;
 	virtual ~MouseMgr()= default;
@@ -21,6 +21,7 @@ public:
 	void Reset(const sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
 
-
+	sf::Vector2i getMousePosition();
 };
 
+#define MPOS (sf::Mouse::getPosition())
