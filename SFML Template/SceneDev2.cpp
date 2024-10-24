@@ -15,7 +15,7 @@ void SceneDev2::Init()
 	AddGo(new SpriteGo("graphics/player.png"));
 
 	GameObject* objText = AddGo(new TextGo("SceneDev2"));
-	objText->SetOrigin(Origins::p24);
+	objText->SetOrigin(Origins::TC);
 	objText->SetPosition({ 1920 / 2, 0 });
 
 	Scene::Init();

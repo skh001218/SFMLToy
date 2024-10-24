@@ -98,7 +98,7 @@ void RollScene::SettingObject()
 {
 	GameObject* obj = AddGo(new SpriteGo("test/background.png"));
 	obj->SetOrigin(Origins::MC);
-	obj->SetPosition({ FRAMEWROK.Instance().GetWindowSize().x / 2.f, FRAMEWROK.Instance().GetWindowSize().y / 2.f });
+	obj->SetPosition({ FRAMEWORK.Instance().GetWindow().getSize().x / 2.f, FRAMEWORK.Instance().GetWindow().getSize().y / 2.f});
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -107,8 +107,8 @@ void RollScene::SettingObject()
 		GameObject* dices = AddGo(new RollDice("test/rollDice.png", nm));
 		dices->SetOrigin(Origins::TL);
 		dices->SetPosition(
-			{ FRAMEWROK.Instance().GetWindowSize().x / 4.f + (i % 4) * FRAMEWROK.Instance().GetWindowSize().x / 8.f,
-			FRAMEWROK.Instance().GetWindowSize().y / 4.f + (i / 4) * FRAMEWROK.Instance().GetWindowSize().y / 4.f });
+			{ FRAMEWORK.Instance().GetWindow().getSize().x / 4.f + (i % 4) * FRAMEWORK.Instance().GetWindow().getSize().x / 8.f,
+			FRAMEWORK.Instance().GetWindow().getSize().y / 4.f + (i / 4) * FRAMEWORK.Instance().GetWindow().getSize().y / 4.f });
 		dices->SetScale({ 3, 3 });
 	}
 	

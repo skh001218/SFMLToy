@@ -86,11 +86,11 @@ void SceneDev1::SettingObject()
 	}
 
 	GameObject* objText2 = AddGo(new TextGo("Current Turn:\n   \"Player " + std::to_string((int)TempPlayerNo::player1 + 1) + "\""));
-	objText2->SetOrigin(Origins::p24);
+	objText2->SetOrigin(Origins::TC);
 	objText2->SetPosition({ (1920 / 4), 0 });
 
 	GameObject* clickObj1 = AddGo(new ClickableGo("Resources/images/note9m.png", "note9"));
-	clickObj1->SetOrigin(Origins::p22);
+	clickObj1->SetOrigin(Origins::MC);
 	clickObj1->SetPosition({ 1920 / 2, 1080 / 2 });
 
 	GameObject* objText = AddGo(new TextGo("SceneDev1"));
