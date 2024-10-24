@@ -6,7 +6,6 @@ class SceneDev1 : public Scene
 {
 protected:
 	std::vector<Player*> players;
-	int i = 0;
 	std::vector<sf::IntRect> frames;
 	sf::Sprite sprite;
 
@@ -15,9 +14,11 @@ protected:
 	float rollingTime = 0;
 
 	bool isRoll = false;
+	bool isBet = false;
 	int currentTurn = 1;
 
 	std::vector<int> diceNums;
+
 
 public:
 	SceneDev1();
@@ -35,5 +36,7 @@ public:
 	void UnloadResource();
 
 	void StartAnimate(float dt);
+	void BetCasino();
+	void BettingCasino(int casino);
 };
 

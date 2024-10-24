@@ -17,6 +17,24 @@ int Player::GetScore() const
 	return score;
 }
 
+void Player::SetTurn(bool tfTurn)
+{
+	if (!tfTurn)
+		isRolled = false;
+	turn = tfTurn;
+	
+}
+
+int Player::GetTurn() const
+{
+	return turn;
+}
+
+void Player::SetBetting(int index)
+{
+	betCasino[index]++;
+}
+
 void Player::SetOrigin(Origins preset)
 {
 	sf::FloatRect rect = rectShape.getLocalBounds();
