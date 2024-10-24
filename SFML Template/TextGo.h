@@ -12,7 +12,8 @@ public:
 	TextGo() = default;
 	virtual ~TextGo() = default;
 
-	TextGo(const std::string& textInfo, const std::string& font = "fonts/KOMIKAP_.ttf", int textSize = 50);
+	TextGo(const std::string& textInfo, const std::string& name = "", 
+		const std::string & font = "fonts/KOMIKAP_.ttf", int textSize = 50);
 
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;

@@ -6,6 +6,7 @@
 #include "Casino.h"
 #include "Dice.h"
 #include "ClickableGo.h"
+#include "RollDice.h"
 
 SceneDev1::SceneDev1()
 	:Scene(SceneIds::Dev1)
@@ -15,6 +16,15 @@ SceneDev1::SceneDev1()
 void SceneDev1::Init()
 {
 	std::cout << "SceneDev1::Init()" << std::endl;
+	int frameWidth = 5;
+	int frameHeight = 9;
+	for (int i = 0; i < 6; i++)
+	{
+		frames.push_back(sf::IntRect(5 + i * 35, 9, 28, 28));
+		frames.push_back(sf::IntRect(5 + i * 35, 55, 28, 22));
+		frames.push_back(sf::IntRect(5 + i * 35, 90, 28, 30));
+		frames.push_back(sf::IntRect(5 + i * 35, 132, 28, 28));
+	}
 	SettingObject();
 	Scene::Init();
 }
@@ -24,7 +34,6 @@ void SceneDev1::Enter()
 	std::cout << "SceneDev1::Enter()" << std::endl;
 
 	LoadResource();
-
 
 	Scene::Enter();
 }
@@ -40,11 +49,53 @@ void SceneDev1::Exit()
 
 void SceneDev1::Update(float dt)
 {
-	Scene::Update(dt);
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev2);
-	}	
+		//SCENE_MGR.ChangeScene(SceneIds::Dev2);
+		rollingTime = 0;
+		for (int i = 0; i < 8; i++)
+		{
+			std::string nm = "RollDice";
+			nm += std::to_string(i + 1);
+			FindGo(nm)->SetMove(true);
+		}
+	}
+
+	Scene::Update(dt);
+	frameTime += dt;
+	rollingTime += dt;
+
+	if (rollingTime >= 2.f)
+	{
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> dis(0, 5);
+		for (int i = 0; i < 8; i++)
+		{
+			int ran = dis(gen);
+			std::string nm = "RollDice";
+			nm += std::to_string(i + 1);
+			if (!FindGo(nm)->IsMove())
+				continue;
+			diceNums.push_back(ran + 1);
+			FindGo(nm)->SetTextureRect(frames[(ran * 4)]);
+
+			FindGo(nm)->SetMove(false);
+		}
+		return;
+	}
+	if (frameTime >= 0.1)
+	{
+		currentFrame = (currentFrame + 1) % frames.size();
+		for (int i = 0; i < 8; i++)
+		{
+			std::string nm = "RollDice";
+			nm += std::to_string(i + 1);
+			FindGo(nm)->SetTextureRect(frames[currentFrame]);
+		}
+		frameTime = 0;
+	}
+		
 }
 
 void SceneDev1::Draw(sf::RenderWindow& window)
@@ -78,20 +129,35 @@ void SceneDev1::SettingObject()
 		GameObject* dice = AddGo(new Dice(na));
 		dice->SetOrigin(Origins::MC);
 		dice->SetPosition({ objPlayer->GetPosition().x + 100,  objPlayer->GetPosition().y - 150 });
-		GameObject* diceCount = AddGo(new TextGo("X 8"));
+		GameObject* diceCount = AddGo(new TextGo("X 8",na + ""));
 		diceCount->SetOrigin(Origins::ML);
 		diceCount->SetPosition({ dice->GetPosition().x + 30, dice->GetPosition().y });
 
 		players.push_back(objPlayer);
 	}
 
+	GameObject* clickObj1 = AddGo(new ClickableGo("Resources/images/note9m.png", "note9"));
+	clickObj1->SetOrigin(Origins::MC);
+	clickObj1->SetPosition({ 1920 / 2, 1080 / 2 });
+
+	for (int i = 0; i < 8; i++)
+	{
+		std::string nm = "RollDice";
+		nm += std::to_string(i + 1);
+		GameObject* dices = AddGo(new RollDice("test/rollDice.png", nm));
+		dices->SetOrigin(Origins::TL);
+		dices->SetPosition(
+			{ FRAMEWORK.Instance().GetWindow().getSize().x / 2.5f + (i % 4) * FRAMEWORK.Instance().GetWindow().getSize().x / 20.f,
+			FRAMEWORK.Instance().GetWindow().getSize().y / 2.f + (i / 4) * FRAMEWORK.Instance().GetWindow().getSize().y / 10.f });
+		dices->SetScale({ 2, 2 });
+		dices->SetTextureRect(frames[0]);
+	}
+
 	GameObject* objText2 = AddGo(new TextGo("Current Turn:\n   \"Player " + std::to_string((int)TempPlayerNo::player1 + 1) + "\""));
 	objText2->SetOrigin(Origins::TC);
 	objText2->SetPosition({ (1920 / 4), 0 });
 
-	GameObject* clickObj1 = AddGo(new ClickableGo("Resources/images/note9m.png", "note9"));
-	clickObj1->SetOrigin(Origins::MC);
-	clickObj1->SetPosition({ 1920 / 2, 1080 / 2 });
+	
 
 	GameObject* objText = AddGo(new TextGo("SceneDev1"));
 	objText->SetOrigin(Origins::TC);
@@ -114,10 +180,24 @@ void SceneDev1::LoadResource()
 	TEXTURE_MGR.Load("Resources/images/note7m.png");
 	TEXTURE_MGR.Load("Resources/images/note8m.png");
 	TEXTURE_MGR.Load("Resources/images/note9m.png");
+	TEXTURE_MGR.Load("test/rollDice.png");
 }
 
 void SceneDev1::UnloadResource()
 {
 	TEXTURE_MGR.Unload("graphics/background.png");
 	TEXTURE_MGR.Unload("test/casino.png");
+	TEXTURE_MGR.Unload("graphics/background.png");
+	TEXTURE_MGR.Unload("Resources/images/customCursor.png");
+	TEXTURE_MGR.Unload("Resources/images/cursorActivated.png");
+	TEXTURE_MGR.Unload("Resources/images/note1m.png");
+	TEXTURE_MGR.Unload("Resources/images/note2m.png");
+	TEXTURE_MGR.Unload("Resources/images/note3m.png");
+	TEXTURE_MGR.Unload("Resources/images/note4m.png");
+	TEXTURE_MGR.Unload("Resources/images/note5m.png");
+	TEXTURE_MGR.Unload("Resources/images/note6m.png");
+	TEXTURE_MGR.Unload("Resources/images/note7m.png");
+	TEXTURE_MGR.Unload("Resources/images/note8m.png");
+	TEXTURE_MGR.Unload("Resources/images/note9m.png");
+	TEXTURE_MGR.Unload("test/rollDice.png");
 }

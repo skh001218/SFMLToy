@@ -6,7 +6,7 @@ void Framework::Init(int width, int height, const const std::string& name)
 {
 	window.create(sf::VideoMode(width, height), name);
     SCENE_MGR.Init();
-    window.setMouseCursorVisible(false);
+    //window.setMouseCursorVisible(false);
 }
 
 void Framework::Do()

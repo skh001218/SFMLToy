@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "TextGo.h"
 
-TextGo::TextGo(const std::string& textInfo, const std::string& font, int textSize)
-	:GameObject(textInfo), textInfo(textInfo), font(font), textSize(textSize)
+TextGo::TextGo(const std::string& textInfo, const std::string& name, const std::string& font, int textSize)
+	:GameObject(name), textInfo(textInfo), font(font), textSize(textSize)
 {
 }
 

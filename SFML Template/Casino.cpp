@@ -31,7 +31,7 @@ void Casino::SetScale(const sf::Vector2f& newScale)
 	sf::Vector2f originScale = sprite.getScale();
 	sprite.setScale({ originScale.x * scale.x, originScale.y * scale.y });
 	sprite.setTextureRect(casinoArea[diceNum-1]);
-	sprite.setRotation(270.f);
+	//sprite.setRotation(270.f);
 }
 
 void Casino::Reset()

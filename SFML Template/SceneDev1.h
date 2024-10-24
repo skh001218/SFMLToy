@@ -7,6 +7,15 @@ class SceneDev1 : public Scene
 protected:
 	std::vector<GameObject*> players;
 	int i = 0;
+	std::vector<sf::IntRect> frames;
+	sf::Sprite sprite;
+
+	float frameTime = 0.0f;
+	int currentFrame = 0;
+	float rollingTime = 0;
+
+	std::vector<int> diceNums;
+
 public:
 	SceneDev1();
 	~SceneDev1() = default;

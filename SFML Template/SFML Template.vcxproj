@@ -148,7 +148,6 @@
     <ClCompile Include="Money.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RollDice.cpp" />
-    <ClCompile Include="RollScene.cpp" />
     <ClCompile Include="ClickableGo.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -169,7 +168,6 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-
     <ClInclude Include="Casino.h" />
     <ClInclude Include="ClickableGo.h" />
     <ClInclude Include="Defines.h" />
@@ -184,7 +182,6 @@
     <ClInclude Include="NoteMgr.h" />
     <ClInclude Include="ResourceMgr.h" />
     <ClInclude Include="RollDice.h" />
-    <ClInclude Include="RollScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneDev2.h" />
