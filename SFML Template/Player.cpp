@@ -39,7 +39,15 @@ void Player::Reset()
 	
 	rectShape.setFillColor(pColors[colorNum]);
 	SetOrigin({ 0.f, 80.f });
-	
+
+	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
+	text.setFont(FONT_MGR.Get("fonts/KOMIKAP_.ttf"));
+	text.setString("My turn");
+	text.setFillColor(sf::Color::Black);
+	text.setPosition(rectShape.getPosition().x + rectShape.getSize().x / 2, 
+		rectShape.getPosition().y - rectShape.getSize().y / 2);
+	text.setOrigin(text.getLocalBounds().left + text.getLocalBounds().width / 2, 
+		text.getLocalBounds().top + text.getLocalBounds().height / 2);
 }
 
 void Player::SetPosition(const sf::Vector2f& pos)
@@ -65,4 +73,9 @@ void Player::Draw(sf::RenderWindow& window)
 {
 	GameObject::Draw(window);
 	window.draw(rectShape);
+	if (turn)
+	{
+		window.draw(text);
+	}
+	
 }

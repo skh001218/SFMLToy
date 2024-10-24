@@ -5,7 +5,7 @@
 class SceneDev1 : public Scene
 {
 protected:
-	std::vector<GameObject*> players;
+	std::vector<Player*> players;
 	int i = 0;
 	std::vector<sf::IntRect> frames;
 	sf::Sprite sprite;
@@ -13,6 +13,9 @@ protected:
 	float frameTime = 0.0f;
 	int currentFrame = 0;
 	float rollingTime = 0;
+
+	bool isRoll = false;
+	int currentTurn = 1;
 
 	std::vector<int> diceNums;
 
@@ -30,5 +33,7 @@ public:
 	void SettingObject();
 	void LoadResource();
 	void UnloadResource();
+
+	void StartAnimate(float dt);
 };
 

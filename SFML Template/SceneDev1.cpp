@@ -26,6 +26,8 @@ void SceneDev1::Init()
 		frames.push_back(sf::IntRect(5 + i * 35, 132, 28, 28));
 	}
 	SettingObject();
+	for (auto& p : players)
+		p->Init();
 	Scene::Init();
 }
 
@@ -34,7 +36,8 @@ void SceneDev1::Enter()
 	std::cout << "SceneDev1::Enter()" << std::endl;
 
 	LoadResource();
-
+	for (auto& p : players)
+		p->Reset();
 	Scene::Enter();
 }
 
@@ -51,6 +54,7 @@ void SceneDev1::Update(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
+		isRoll = true;
 		//SCENE_MGR.ChangeScene(SceneIds::Dev2);
 		rollingTime = 0;
 		for (int i = 0; i < 8; i++)
@@ -60,41 +64,19 @@ void SceneDev1::Update(float dt)
 			FindGo(nm)->SetMove(true);
 		}
 	}
-
+	if (isRoll)
+	{
+		StartAnimate(dt);
+		players[currentTurn]->SetDiceList(diceNums);
+	}
+		
 	Scene::Update(dt);
-	frameTime += dt;
-	rollingTime += dt;
-
-	if (rollingTime >= 2.f)
+	if (InputMgr::GetKeyDown(sf::Keyboard::Numpad3))
 	{
-		std::random_device rd;
-		std::mt19937 gen(rd());
-		std::uniform_int_distribution<int> dis(0, 5);
-		for (int i = 0; i < 8; i++)
-		{
-			int ran = dis(gen);
-			std::string nm = "RollDice";
-			nm += std::to_string(i + 1);
-			if (!FindGo(nm)->IsMove())
-				continue;
-			diceNums.push_back(ran + 1);
-			FindGo(nm)->SetTextureRect(frames[(ran * 4)]);
-
-			FindGo(nm)->SetMove(false);
-		}
-		return;
+		players[currentTurn - 1]->SetTurn(false);
+		currentTurn = 2;
 	}
-	if (frameTime >= 0.1)
-	{
-		currentFrame = (currentFrame + 1) % frames.size();
-		for (int i = 0; i < 8; i++)
-		{
-			std::string nm = "RollDice";
-			nm += std::to_string(i + 1);
-			FindGo(nm)->SetTextureRect(frames[currentFrame]);
-		}
-		frameTime = 0;
-	}
+	players[currentTurn - 1]->SetTurn(true);
 		
 }
 
@@ -103,6 +85,8 @@ void SceneDev1::Draw(sf::RenderWindow& window)
 	Scene::Draw(window);
 	MouseMgr::Instance().Reset(window);
 	MouseMgr::Instance().Draw(window);
+	for (auto& p : players)
+		p->Draw(window);
 }
 
 void SceneDev1::SettingObject()
@@ -121,7 +105,7 @@ void SceneDev1::SettingObject()
 
 	for (int i = 0; i < 5; i++)
 	{
-		GameObject* objPlayer = AddGo(new Player(i));
+		Player* objPlayer = new Player(i);
 		objPlayer->SetPosition({ 0.f + i * 400.f, 1080.f });
 
 		std::string na = "Player";
@@ -150,9 +134,9 @@ void SceneDev1::SettingObject()
 			{ FRAMEWORK.Instance().GetWindow().getSize().x / 2.5f + (i % 4) * FRAMEWORK.Instance().GetWindow().getSize().x / 20.f,
 			FRAMEWORK.Instance().GetWindow().getSize().y / 2.f + (i / 4) * FRAMEWORK.Instance().GetWindow().getSize().y / 10.f });
 		dices->SetScale({ 2, 2 });
+		dices->SetMove(false);
 		dices->SetTextureRect(frames[0]);
 	}
-
 	GameObject* objText2 = AddGo(new TextGo("Current Turn:\n   \"Player " + std::to_string((int)TempPlayerNo::player1 + 1) + "\""));
 	objText2->SetOrigin(Origins::TC);
 	objText2->SetPosition({ (1920 / 4), 0 });
@@ -200,4 +184,41 @@ void SceneDev1::UnloadResource()
 	TEXTURE_MGR.Unload("Resources/images/note8m.png");
 	TEXTURE_MGR.Unload("Resources/images/note9m.png");
 	TEXTURE_MGR.Unload("test/rollDice.png");
+}
+
+void SceneDev1::StartAnimate(float dt)
+{
+	frameTime += dt;
+	rollingTime += dt;
+
+	if (rollingTime >= 1.f)
+	{
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> dis(0, 5);
+		for (int i = 0; i < 8; i++)
+		{
+			int ran = dis(gen);
+			std::string nm = "RollDice";
+			nm += std::to_string(i + 1);
+			if (!FindGo(nm)->IsMove())
+				continue;
+			diceNums.push_back(ran + 1);
+			FindGo(nm)->SetTextureRect(frames[(ran * 4)]);
+
+			FindGo(nm)->SetMove(false);
+		}
+		return;
+	}
+	if (frameTime >= 0.1)
+	{
+		currentFrame = (currentFrame + 1) % frames.size();
+		for (int i = 0; i < 8; i++)
+		{
+			std::string nm = "RollDice";
+			nm += std::to_string(i + 1);
+			FindGo(nm)->SetTextureRect(frames[currentFrame]);
+		}
+		frameTime = 0;
+	}
 }
