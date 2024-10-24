@@ -17,6 +17,10 @@ void GameObject::SetScale(const sf::Vector2f& newScale)
 	scale = newScale;
 }
 
+void GameObject::SetTextureRect(sf::IntRect rect)
+{
+}
+
 void GameObject::Init()
 {
 }

@@ -2,12 +2,13 @@
 #include "SceneMgr.h"
 #include "SceneDev1.h"
 #include "SceneDev2.h"
+#include "RollScene.h"
 
 void SceneMgr::Init()
 {
 	// Scene »ý¼º
 
-	scenes.push_back(new SceneDev1());
+	scenes.push_back(new RollScene());
 	scenes.push_back(new SceneDev2());
 
 	for (auto scene : scenes)

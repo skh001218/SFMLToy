@@ -63,6 +63,12 @@
     <ClCompile Include="Money.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="RollScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RollDice.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputMgr.h">
@@ -117,6 +123,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Money.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="RollScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="RollDice.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

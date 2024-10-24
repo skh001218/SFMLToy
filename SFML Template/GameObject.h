@@ -5,6 +5,7 @@ protected:
 	std::string name;
 
 	bool active = true;
+	bool move = true;
 	sf::Vector2f position;
 	Origins originPreset;
 	sf::Vector2f origin;
@@ -20,6 +21,9 @@ public:
 	bool IsActive() const { return active; }
 	void SetActive(bool a) { active = a; }
 
+	bool IsMove() const { return move; }
+	void SetMove(bool a) { move = a; }
+
 	sf::Vector2f GetPosition() { return position; }
 	virtual void SetPosition(const sf::Vector2f& pos) { position = pos; }
 
@@ -31,6 +35,7 @@ public:
 		originPreset = Origins::Custom;
 	}
 	virtual void SetScale(const sf::Vector2f& newOrigin);
+	virtual void SetTextureRect(sf::IntRect rect);
 
 	virtual void Init();
 	virtual void Release();

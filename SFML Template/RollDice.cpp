@@ -1,47 +1,47 @@
 #include "stdafx.h"
-#include "SpriteGo.h"
+#include "RollDice.h"
 
-SpriteGo::SpriteGo(const std::string& textId, const std::string& name)
+RollDice::RollDice(const std::string& textId, const std::string& name)
 	:GameObject(name), textureId(textId)
 {
 }
 
-void SpriteGo::SetOrigin(Origins preset)
+void RollDice::SetOrigin(Origins preset)
 {
 	originPreset = preset;
 	origin = Utils::SetOrigin(sprite, originPreset);
 }
 
-void SpriteGo::SetOrigin(const sf::Vector2f& newOrigin)
+void RollDice::SetOrigin(const sf::Vector2f& newOrigin)
 {
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	sprite.setOrigin(origin);
 }
 
-void SpriteGo::SetTextureRect(sf::IntRect rect)
+void RollDice::SetTextureRect(sf::IntRect rect)
 {
 	sprite.setTextureRect(rect);
 }
 
-void SpriteGo::SetScale(const sf::Vector2f& newOrigin)
+void RollDice::SetScale(const sf::Vector2f& newOrigin)
 {
 	sprite.setScale(newOrigin);
 }
 
-void SpriteGo::Reset()
+void RollDice::Reset()
 {
 	sprite.setTexture(TEXTURE_MGR.Get(textureId));
 	SetOrigin(originPreset);
 }
 
-void SpriteGo::SetPosition(const sf::Vector2f& pos)
+void RollDice::SetPosition(const sf::Vector2f& pos)
 {
 	GameObject::SetPosition(pos);
 	sprite.setPosition(pos);
 }
 
-void SpriteGo::Draw(sf::RenderWindow& window)
+void RollDice::Draw(sf::RenderWindow& window)
 {
 	GameObject::Draw(window);
 	window.draw(sprite);

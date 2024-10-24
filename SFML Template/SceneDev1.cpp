@@ -9,6 +9,7 @@
 SceneDev1::SceneDev1()
 	:Scene(SceneIds::Dev1)
 {
+	
 }
 
 void SceneDev1::Init()
@@ -41,10 +42,7 @@ void SceneDev1::Exit()
 void SceneDev1::Update(float dt)
 {
 	Scene::Update(dt);
-	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev2);
-	}
+	
 }
 
 void SceneDev1::Draw(sf::RenderWindow& window)
@@ -82,11 +80,6 @@ void SceneDev1::SettingObject()
 
 		players.push_back(objPlayer);
 	}
-	FindGo("Player1");
-	std::cout << FindGo("Player5")->GetName();
-
-	
-
 
 	GameObject* objText = AddGo(new TextGo("SceneDev1"));
 	objText->SetOrigin(Origins::TC);
