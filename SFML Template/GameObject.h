@@ -11,6 +11,8 @@ protected:
 	sf::Vector2f origin;
 	sf::Vector2f scale;
 
+	ClickableTypes objectType = ClickableTypes::disabled;
+
 public:
 	GameObject(const std::string& name = "");
 	virtual ~GameObject() = default;
@@ -44,5 +46,6 @@ public:
 
 	virtual void Update(float dt);
 	virtual void Draw(sf::RenderWindow& window);
+	
 };
 

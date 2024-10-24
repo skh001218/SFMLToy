@@ -6,7 +6,7 @@ class SceneDev1 : public Scene
 {
 protected:
 	std::vector<GameObject*> players;
-
+	int i = 0;
 public:
 	SceneDev1();
 	~SceneDev1() = default;

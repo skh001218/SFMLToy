@@ -26,3 +26,4 @@ public:
 	virtual int FindGoAll(const std::string& name, std::list<GameObject*>& list);
 };
 
+

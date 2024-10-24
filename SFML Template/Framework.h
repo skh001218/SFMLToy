@@ -1,4 +1,5 @@
 #pragma once
+
 class Framework : public Singleton<Framework>
 {
 	friend Singleton<Framework>;
@@ -30,11 +31,11 @@ public:
 	void SetTimeScale(float newTimeScale) { timeScale = newTimeScale; };
 	float GetTimeScale() const { return timeScale; };
 
-	sf::Vector2u GetWindowSize() { return window.getSize(); }
-
 	virtual void Init(int width, int height, const const std::string& name);
 	virtual void Do();
 	virtual void Release();
+
+	sf::RenderWindow& GetWindow();
 };
 
-#define FRAMEWROK (Framework::Instance())
+#define FRAMEWORK (Framework::Instance())
